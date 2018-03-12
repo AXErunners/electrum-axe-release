@@ -1,0 +1,33 @@
+matrix:
+  include:
+    - os: osx
+    - os: linux
+      sudo: required
+      services:
+        - docker
+before_install:
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then ./before_install-osx.sh ; else ./before_install-linux.sh ; fi
+script:
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then ./travis-build-osx.sh ; else ./travis-build-linux.sh; fi
+deploy:
+  - provider: releases
+    api_key:
+      secure: SQXk7lgMBhI8dlpE5+xj54Tl2VMS0t3TJpJnLEgm0SBeenX3S7vmMKBaWbA1qy8zA4h9LWBXxPgy4FKL+9qLOl5cnyJghwlWxoFplUvN2PcDwtnOKcRjvGawFktKhecXTZPwUFjG8AE32jJqY+Ps+1pEgg44qUI7EoWYcPMmItWYHjeMBFfF7+MdzfHxQR7DykFr3QmDnWaTf6T/ojLE3muHBvOI0fVzhFpb0Pd1uWaG1DNtUL2/ALNFbjLKPMjlNKaozgyxUcNxSyRtFjGDlWuqr89snMDIHexG7J3d/UQtfwFg7l55XpZ/UfHCB8NwR7m7n3QYPqaMnybDIFRp8hxwcBijLsWtXy1AHW4p08hxcbDoz2jU84DtRXI6cT3zrhQeWplwS0+dkRpt7CF5SpEIzDRtabbBC5geR4Q6GFdm97fab6gFwKGJbmfcX1DTRAmpuIA0kqHASAHqI9qY0Een3B0GyeO0Ix5CHjmgVZNwY6mfx3OrDaISb7mTiwYjgeo5FKkOTKcEKYSXU1FXB/yzarvistG+lowQ4VAq/alG6sqO/SoHnQyiEw/13LjTTciWYIarP88xFtGC7/Y81k6jo7jzpnJMLRp9P6YOaJ8U5/DDQOGC2GprbqkCIAkL9NOB2bb8E2D4eYDLB7FWhBjWKbRRx7JmPW+9x6viJ5Y=
+      # zebra-lucky test deployment key secure: DWW7CXzrOnJs8IdzMXAPRYj7ObyN0E5OWOCL5YzJ14zlNlWIewYn/nkOo1o7HPGl32IdYWxVYwb+4H/r2vhx6ssUDmygl1pN/Nf9HgCml6mbxFFjcH/ONE4OcxRZGo9lMBsTcHWtorteGCfWHknGVPvDeUYfDOvi0NYFLS/0WzsGStqtsGRDVxFG2dWOyyXleJLuxTBVrv1Q6DHtxcN/e5cG4PO8vsDhW2/3pmHqmYqtrLkvRLBM2k/me3+BTAk+S1SWx/cT34H2Fdj0wMQu3+gFjs1OTZezbOBalG9KcVHOYl4Mu7xjQmF8Zi25a7d9tIAqNRccKBCuy/6CnHkbIjCwjdPMnQyG0eblbdthUQFPtUuFMV8MCurmu0iZU9rl/FkaZifQFjEw1wg3zxD/vezAvxsxszsmlESqvhWKs+SCrY2Jlt3+JiXHXRSKevl7re/i2J/7Yy/NyJq6WtUeh66AZKP/WODcWnNgQcf93yxpKIBlyer4Z/vmOi5xGi3LIlPvXLoyuIyECPwLOF65uSIPVRJ04Tfb/hG9J85Ln+7GkiK12LClL3irzmn+CIb3yRbDvEYBH3oJpsVgS8T5rdB2pdYzmyXwqhYeQ43l+RenVO9oHMW+Mj8k34ovY7NIrphM+/Cw0fNDzziqRRJOTDsu7RTf7qouLUTplfZ28E0=
+    file:
+      - electrum-axe/dist/electrum-axe-macosx.dmg
+    on:
+      repo: akhavr/electrum-axe-release
+      tags: true
+      condition: "$TRAVIS_OS_NAME = osx"
+  - provider: releases
+    api_key:
+      secure: SQXk7lgMBhI8dlpE5+xj54Tl2VMS0t3TJpJnLEgm0SBeenX3S7vmMKBaWbA1qy8zA4h9LWBXxPgy4FKL+9qLOl5cnyJghwlWxoFplUvN2PcDwtnOKcRjvGawFktKhecXTZPwUFjG8AE32jJqY+Ps+1pEgg44qUI7EoWYcPMmItWYHjeMBFfF7+MdzfHxQR7DykFr3QmDnWaTf6T/ojLE3muHBvOI0fVzhFpb0Pd1uWaG1DNtUL2/ALNFbjLKPMjlNKaozgyxUcNxSyRtFjGDlWuqr89snMDIHexG7J3d/UQtfwFg7l55XpZ/UfHCB8NwR7m7n3QYPqaMnybDIFRp8hxwcBijLsWtXy1AHW4p08hxcbDoz2jU84DtRXI6cT3zrhQeWplwS0+dkRpt7CF5SpEIzDRtabbBC5geR4Q6GFdm97fab6gFwKGJbmfcX1DTRAmpuIA0kqHASAHqI9qY0Een3B0GyeO0Ix5CHjmgVZNwY6mfx3OrDaISb7mTiwYjgeo5FKkOTKcEKYSXU1FXB/yzarvistG+lowQ4VAq/alG6sqO/SoHnQyiEw/13LjTTciWYIarP88xFtGC7/Y81k6jo7jzpnJMLRp9P6YOaJ8U5/DDQOGC2GprbqkCIAkL9NOB2bb8E2D4eYDLB7FWhBjWKbRRx7JmPW+9x6viJ5Y=
+      # zebra-lucky test deployment key secure: DWW7CXzrOnJs8IdzMXAPRYj7ObyN0E5OWOCL5YzJ14zlNlWIewYn/nkOo1o7HPGl32IdYWxVYwb+4H/r2vhx6ssUDmygl1pN/Nf9HgCml6mbxFFjcH/ONE4OcxRZGo9lMBsTcHWtorteGCfWHknGVPvDeUYfDOvi0NYFLS/0WzsGStqtsGRDVxFG2dWOyyXleJLuxTBVrv1Q6DHtxcN/e5cG4PO8vsDhW2/3pmHqmYqtrLkvRLBM2k/me3+BTAk+S1SWx/cT34H2Fdj0wMQu3+gFjs1OTZezbOBalG9KcVHOYl4Mu7xjQmF8Zi25a7d9tIAqNRccKBCuy/6CnHkbIjCwjdPMnQyG0eblbdthUQFPtUuFMV8MCurmu0iZU9rl/FkaZifQFjEw1wg3zxD/vezAvxsxszsmlESqvhWKs+SCrY2Jlt3+JiXHXRSKevl7re/i2J/7Yy/NyJq6WtUeh66AZKP/WODcWnNgQcf93yxpKIBlyer4Z/vmOi5xGi3LIlPvXLoyuIyECPwLOF65uSIPVRJ04Tfb/hG9J85Ln+7GkiK12LClL3irzmn+CIb3yRbDvEYBH3oJpsVgS8T5rdB2pdYzmyXwqhYeQ43l+RenVO9oHMW+Mj8k34ovY7NIrphM+/Cw0fNDzziqRRJOTDsu7RTf7qouLUTplfZ28E0=
+    file:
+      - electrum-axe/dist/Electrum-AXE-1.0.0.tar.gz
+      - electrum-axe/dist/electrum-setup.exe
+    on:
+      repo: akhavr/electrum-axe-release
+      tags: true
+      condition: "$TRAVIS_OS_NAME = linux"
