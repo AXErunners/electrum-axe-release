@@ -8,4 +8,4 @@ else
 fi
 
 docker run --rm -v $(pwd):/opt -w /opt/electrum-axe -t axerunners/electrum-axe-release:Linux /opt/build_linux.sh
-docker run --rm -v $(pwd):/opt -v $(pwd)/electrum-axe/:/root/.wine/drive_c/electrum -w /opt/electrum-axe -t akhavr/electrum-axe-release:Wine /opt/build_wine.sh
+docker run --rm -v $(pwd):/opt -v $(pwd)/electrum-axe/:/root/.wine/drive_c/electrum -w /opt/electrum-axe -t axerunners/electrum-axe-release:Wine /opt/build_wine.sh

@@ -17,7 +17,7 @@ deploy:
     file:
       - electrum-axe/dist/electrum-axe-macosx.dmg
     on:
-      repo: akhavr/electrum-axe-release
+      repo: axerunners/electrum-axe-release
       tags: true
       condition: "$TRAVIS_OS_NAME = osx"
   - provider: releases
