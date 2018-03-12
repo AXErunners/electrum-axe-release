@@ -1,4 +1,4 @@
-axerunners# Electrum-AXE release scripts
+# Electrum-AXE release scripts
 
 ## Linux
 
