@@ -30,6 +30,6 @@ deploy:
       - electrum-axe/dist/Electrum-AXE-1.0.0.tar.gz
       - electrum-axe/dist/electrum-setup.exe
     on:
-      repo: akhavr/electrum-axe-release
+      repo: axerunners/electrum-axe-release
       tags: true
       condition: "$TRAVIS_OS_NAME = linux"
