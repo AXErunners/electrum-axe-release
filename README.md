@@ -28,8 +28,8 @@ $ pip uninstall -y Electrum-AXE
 ```
 $ ./python-trezor-wine.sh
 $ ./python-x11_hash-wine.sh
-$ docker build -f Dockerfile-wine -t akhavr/electrum-axe-release:Wine .
-$ git clone git@github.com:axerunners/electrum-axe.git
+$ docker build -f Dockerfile-wine -t axerunners/electrum-axe-release:Wine .
+$ git clone https://github.com/axerunners/electrum-axe.git
 $ docker run --rm -v $(pwd):/opt \
     -v $(pwd)/electrum-axe/:/root/.wine/drive_c/electrum \
     -w /opt/electrum-axe -t axerunners/electrum-axe-release:Wine \
